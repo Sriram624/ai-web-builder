@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"  // <--- Changed from sqlite
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  prompt    String
+  schema    Json     // <--- Changed from String to Native JSON
+  createdAt DateTime @default(now())
+}
